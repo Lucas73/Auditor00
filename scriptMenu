@@ -1,0 +1,102 @@
+#!/bin/bash
+clear
+echo "    _             _ _ _              ___   ___  "
+echo "   / \  _   _  __| (_) |_ ___  _ __ / _ \ / _ \ "
+echo "  / _ \| | | |/ _  | | __/ _ \|  __| | | | | | |"
+echo " / ___ \ |_| | (_| | | || (_) | |  | |_| | |_| |"
+echo "/_/   \_\__ _|\__ _|_|\__\___/|_|   \___/ \___/ "
+echo "                                                "
+sleep 1
+echo "----------MENU DE OPCIONES----------"
+echo ""
+COLUMNS=12
+PS3="Elija una opción (SALIR Opción 4): "
+options=("Opción 1 - Revisar dependencias" "Opción 2 - Tarjeta en Modo Monitor" "Opción Nro. 3" "Salir")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "Opción 1 - Revisar dependencias")
+            echo -e "\nHa elegido la opcion 1\n"
+if command -v airodump-ng >/dev/null
+then 
+echo -e "airodump-ng is installed\n"
+sleep 1
+else
+echo "doesnt exists"
+sleep 1
+fi
+if command -v nmap >/dev/null
+	then 
+		echo -e "Nmap is installed\n"
+		sleep 2
+	else
+		echo "Aircrack-ng doesnt exists"
+fi
+            ;;
+        "Opción 2 - Tarjeta en Modo Monitor")
+            echo -e "\nHa elegido la opcion 2"
+            echo -e "\n\e[32m---------------Lista de sus tarjetas de red disponibles---------------"
+            echo -e "\e[0m"
+            iwconfig
+            echo -e "\n\e[32m-----------------------------------------------------------------------"
+            echo -e "\e[0m"
+            sleep 3
+            echo -e "Es necesario activar el modo monitor de una tarjeta wireless"
+            sleep 3
+            echo -e "y seguidamente eliminaremos los procesos potencialmente conflictivos."
+            sleep 3 
+            echo -e "\nEscoja una de las tarjetas de red disponibles en la lista: "
+            echo -e "\e[91m(NO SELECCIONAR tarjetas no wireless extensions)\e[0m"
+            read NIC
+            sleep 1
+            echo -e "Para escoger a nuestro target"
+            sleep 3
+            echo -e "el Punto de Acceso (AP) al que deseamos auditar"
+            sleep 3
+            echo -e "necesitamos el nombre que se le ha otorgado (ESSID)"
+            sleep 3
+            echo -e "En este proceso debe escoger un AP por su ESSID"
+            sleep 3
+            echo -e "\n\e[5mATENCION:\e[0m Cuando elija un ESSID..."
+            sleep 4
+            echo -e "...pulse Ctrl c para continuar"
+            sleep 5
+            sudo airmon-ng start $NIC
+            sudo airmon-ng check kill
+            sudo airodump-ng $NIC
+            sleep 1
+            echo -e "\nPor favor, escriba el ESSID del target a auditar: "
+            read WESSID
+            echo -e "También necesitamos el canal en el que opera, por favor:"
+            read WCHANNEL
+            echo -e "Lanzamos una búsqueda más concreta sobre ese AP"
+            sleep 2
+            echo -e "Necesitamos encontrar dispositivos enlazados para lanzar un ataque de deautenticación."
+            sleep 4
+            echo -e "\n\e[5mATENCION:\e[0m Cuando elija la MAC de un dispositivo enlazado(STATION)..."
+            sleep 4
+            echo -e "...pulse Ctrl c para continuar"
+            sleep 4
+            sudo airodump-ng wlan0 -c $WCHANNEL --essid $WESSID 
+            echo -e "\nAhora llega el momento de deautenticar al cliente enlazado."
+            sleep 2
+            echo -e "Una vez que se deutentique, tratará de autenticarse de nuevo."
+            sleep 2
+            echo -e "\nEscriba la MAC del dispositivos escogido(STATION) a deautenticar:"
+            read WSTATION
+            sleep 2
+            echo $WSTATION
+            ;;
+        "Opción Nro. 3")
+            echo "Ha elegido la opción 3"
+            sleep 2
+            clear
+            ./$(basename $0) && exit
+            ;;
+        "Salir")
+        	echo -e "\e[93mBye Bye"
+            break
+            ;;
+        *) echo invalid option;;
+    esac
+done
