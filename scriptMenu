@@ -1,102 +1,399 @@
 #!/bin/bash
+# I leave this boolean for jump intro.
+i=1
+if $i==2
+then
 clear
-echo "    _             _ _ _              ___   ___  "
+echo -e "\n\e[93mAuditor00<->\n\n\n\n"
+sleep 0.05
+clear
+echo -e "\nAuditor00 <->\n\n\n\n"
+sleep 0.05
+clear 
+echo -e "\nAuditor00  <->\n\n\n\n"
+sleep 0.05
+clear
+echo -e "\nAuditor00   <->\n\n\n\n"
+sleep 0.05
+clear
+echo -e "\nAuditor00    <->\n\n\n\n"
+sleep 0.05
+clear
+echo -e "\nAuditor00     <->\n\n\n\n"
+sleep 0.05
+clear
+echo -e "\nAuditor00      <->\n\n\n\n"
+sleep 0.05
+clear
+echo -e "\nAuditor00       <->\n\n\n\n"
+sleep 0.05
+clear
+echo -e "\nAuditor00        <->\n\n\n\n"
+sleep 0.05
+clear
+echo -e "\nAuditor00         <->\n\n\n\n"
+sleep 0.05
+clear
+echo -e "\nAuditor00          <->\n\n\n\n"
+sleep 0.05
+clear
+echo -e "\nAuditor00           <->\n\n\n\n"
+sleep 0.05
+clear
+echo -e "\nAuditor00            <->\n\n\n\n"
+sleep 0.05
+clear
+echo -e "\nAuditor00             <->\n\n\n\n"
+sleep 0.05
+clear
+echo -e "\nAuditor00              <->\n\n\n\n"
+sleep 0.05
+clear
+echo -e "\nAuditor00               <->\n\n\n\n"
+sleep 0.05
+clear
+echo -e "\nAuditor00                <->\n\n\n\n"
+sleep 0.05
+clear
+echo -e "\nAuditor00                 <->\n\n\n\n"
+sleep 0.05
+clear
+echo -e "\nAuditor00                  <->\n\n\n\n"
+sleep 0.05
+clear
+echo -e "\nAuditor00                   <->\n\n\n\n"
+sleep 0.05
+clear
+echo -e "\nAuditor00                    <->\n\n\n\n"
+sleep 0.05
+clear
+echo -e "\nAuditor00                     <->\n\n\n\n"
+sleep 0.05
+clear
+echo -e "\nAuditor00                      <->\n\n\n\n"
+sleep 0.05
+clear
+echo -e "\nAuditor00                       <->\n\n\n\n"
+sleep 0.05
+clear
+echo -e "\nAuditor00                        <->\n\n\n\n"
+sleep 0.05
+clear
+echo -e "\nAuditor00                         <->\n\n\n\n"
+sleep 0.05
+clear
+echo -e "\nAuditor00                          <->\n\n\n\n"
+sleep 0.05
+clear
+echo -e "\nAuditor00                           \e[5m*\n\n\n\n"
+sleep 3
+clear
+echo -e "\e[0m\e[93m\n\n\n\e[93m----Bienvenido a Auditor00 WiFi.----"
+clear
+echo -e "\e[93m\n\n\n----Bienvenido a Auditor00 WiFi.----\n\nAuditor00 es una herramienta pedagógica sobre redes WiFi"
+clear
+echo -e "\e[93m\n\n\n----Bienvenido a Auditor00 WiFi.----\n\nAuditor00 es una herramienta pedagógica sobre redes WiFi\n\npero con la particularidad de que sus ejemplos prácticos...\n\n\n\e[0m"
+read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
+clear
+echo -e "\e[93m\n\n\n...son creados sobre la marcha en auditorías reales.\n\n\n\e[0m"
+read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
+else
+clear
+fi
+echo -e "\e[93m    _             _ _ _              ___   ___  "
 echo "   / \  _   _  __| (_) |_ ___  _ __ / _ \ / _ \ "
 echo "  / _ \| | | |/ _  | | __/ _ \|  __| | | | | | |"
 echo " / ___ \ |_| | (_| | | || (_) | |  | |_| | |_| |"
 echo "/_/   \_\__ _|\__ _|_|\__\___/|_|   \___/ \___/ "
 echo "                                                "
-sleep 1
-echo "----------MENU DE OPCIONES----------"
-echo ""
+echo -e "\e[0m----------MENU DE OPCIONES----------"
+echo -e "\e[7m(Recomendación: seguir el orden numérico)"
+echo -e "\e[0m"
 COLUMNS=12
-PS3="Elija una opción (SALIR Opción 4): "
-options=("Opción 1 - Revisar dependencias" "Opción 2 - Tarjeta en Modo Monitor" "Opción Nro. 3" "Salir")
+PS3=$'\e[93m\n'"Elija una opción."$'\n'"-----------------"$'\n\n'"1: Revisar dependencias"$'\n'"2: Falsificación de dirección MAC"$'\n'"3: Tarjeta en Modo Monitor"$'\n'"4: Ataque por deautenticación"$'\n'"5: SALIR "$'\e[0m\n'
+options=("Opción 1 - Revisar dependencias" "Opción 2 - Falsificación de dirección MAC" "Opción 3 - Tarjeta en Modo Monitor" "Opción 4 - Ataque por deautenticación" "Salir")
 select opt in "${options[@]}"
 do
     case $opt in
         "Opción 1 - Revisar dependencias")
-            echo -e "\nHa elegido la opcion 1\n"
+        clear
+            echo -e "\n\n\e[93mHa elegido la opcion 1. Revisar dependencias."
+            echo -e "\nPara el uso de esta herramienta pedagógica son necesarias una serie de dependencias."
+            echo -e "\nCon esta opción revisaremos si están correctamente instaladas.\n"
+            echo -e "Lo haremos lanzando el script  booleano:\n\n\e[0mif command -v <DEPENDENCIA> >/dev/null\nthen\necho -e \"<DEPENDENCIA> is installed\"\nelse\necho -e\"<DEPENDENCIA> is not installed\"\nfi\n\n\n"
+            read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
+			clear
 if command -v airodump-ng >/dev/null
 then 
-echo -e "airodump-ng is installed\n"
-sleep 1
+echo -e "\e[93mairodump-ng is installed\n"
+sleep 0.5
 else
-echo "doesnt exists"
-sleep 1
+echo "Airodump-ng doesnt exists"
+sleep 0.5
 fi
+if command -v aircrack-ng >/dev/null
+ then
+ echo -e "aircrack-ng-ng is installed\n"
+ sleep 0.5
+ else
+ echo "Aircrack-ng doesnt exists"
+ sleep 0.5
+ fi
+if command -v reaver >/dev/null
+then 
+echo -e "reaver is installed\n"
+sleep 0.5
+else
+echo "reaver doesnt exists"
+sleep 0.5
+fi
+if command -v airolib-ng >/dev/null
+ then
+ echo -e "airolib-ng is installed\n"
+ sleep 0.5
+ else
+ echo "airolib-ng doesnt exists"
+ sleep 0.5
+ fi
+if command -v airmon-ng >/dev/null
+ then
+ echo -e "airmon-ng is installed\n"
+ sleep 0.5
+ else
+ echo "Airmon-ng doesnt exists"
+ sleep 0.5
+ fi
 if command -v nmap >/dev/null
-	then 
-		echo -e "Nmap is installed\n"
-		sleep 2
-	else
-		echo "Aircrack-ng doesnt exists"
+ then 
+ echo -e "Nmap is installed\n"
+ sleep 0.5
+ else
+ echo "Nmap doesnt exists"
 fi
-            ;;
-        "Opción 2 - Tarjeta en Modo Monitor")
-            echo -e "\nHa elegido la opcion 2"
+if command -v john >/dev/null
+ then
+ echo -e "John The Ripper is installed\n"
+ sleep 0.5
+ else
+ echo "John The Ripper doesnt exists"
+ sleep 0.5
+fi
+if command -v wifite >/dev/null
+ then
+ echo -e "wifite is installed\n"
+ sleep 0.5
+ else
+ echo "wifite doesnt exists"
+ sleep 0.5
+fi
+echo -e "\n\n\n\n\e[0m"
+read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
+clear
+;;
+             "Opción 2 - Falsificación de dirección MAC")
+             clear
+             echo "Ha elegido la opción Falsificación de dirección MAC"
+             echo -e "\n\n\e[93mFalsificación de la dirección MAC\n\n\n\e[0m"
+             read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
+             clear
+             echo -e "\n\e[93mHay que tratar de dificultar el rastreo de nuestra auditoría."
+             echo -e "\nUna buena práctica en la auditoría es falsificar la dirección unívoca de nuestra tarjeta de red.\n"
+             echo -e "Pero lo primero es saber lo que es una dirección MAC.\n\n\n\n\e[0m"
+             read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
+             clear
+             echo -e "\e[93mLa dirección MAC es el identificador que se asigna a las tarjetas de red\n\nde cualquier dispositivo con conectividad.\n"
+             echo -e "Es única y se le llama también dirección física.\n"
+             echo -e "Es unívoco para cada dispositivo con conectividad.\n\n\n\e[0m"
+             read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
+             clear
+             echo -e "\e[93mEn nuestros intentos de acceso a la red podemos dejar rastros,\n\npor ejemplo en el registro de logs,\n\nasí que falsificaremos la MAC"
+             echo -e "\nPara ello utilizaremos una herramienta llamada MacChanger."
+             echo -e "\nSu uso es muy sencillo y nos permitirá modificar la MAC, como también restaurarla si así lo deseamos.\e[0m\n\n\n\n"
+             read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
+             clear
+             echo -e "\n\n\e[93mEstos son los comandos que permite la herramienta MacChanger:\n"
+             echo -e "Lanzamos \e[0mmacchanger --help\n\n"
+             macchanger --help
+             echo -e "\n"
+             read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
+             clear
+             echo -e "\n\n\e[93mVolvemos a revisar las tarjetas de red disponibles en este dispositivo con \e[0miwconfig"
+             echo -e "\niwconfig"
+              echo -e "\n\e[32m---------------Lista de sus tarjetas de red disponibles---------------"
+              echo -e "\e[0m"
+              iwconfig
+              echo -e "\n\e[32m-----------------------------------------------------------------------"
+              echo -e "\e[0m\n"
+              read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
+              echo -e "\n\n\e[93mY ahora escriba el nombre de una de ellas para ver su MAC actual y su MAC permanente."
+              echo -e "\nEstas dos no tienen por qué ser la misma. Pueden haber sido cambiadas.\n\e[0m"
+              read MACAUDITOR
+              clear
+              echo -e "\n\e[93mLanzamos la instrucción \e[0mmacchanger -s $MACAUDITOR\n"
+              macchanger -s $MACAUDITOR
+              echo ""
+              echo -e "\e[93m Y aquí comprobamos ambas MAC.\n\e[0m"
+              read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
+              clear 
+              echo -e "\n\e[93mEl paso siguiente será elegir una MAC adress a la que cambiar.\n"
+              echo -e "Escoja una palabra clave o una parte de ella. Ej: Apple, Tp-Link, Ubiquiti, Cisco, Tp-\n\e[0m"
+              read KWMACAUDITOR
+              macchanger -l $MACAUDITOR | grep -i $KWMACAUDITOR
+              echo -e "\n\e[93mHemos lanzado \e[0mmacchanger -l $MACAUDITOR | grep -i $KWMACAUDITOR"
+              echo -e "\n\e[93mY esta de arriba es la lista con los resultados."
+              echo -e "\nEl fabricante es identificado por las 3 primeras parejas y son las que respetaremos."
+              echo -e "\nLas segundas 3 parejas las pondremos al azar.\e[0m" 
+              echo ""
+              read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
+              echo -e "\n\e[93mPara cambiar la MAC de la tarjeta $MACAUDITOR "
+              echo -e "\ncombinaremos las 3 primeras parejas del fabricante elegido con 3 al azar."
+              echo -e "\nEscoja los 3 primeros de un fabricante y Auditor00 completará el resto."
+              echo -e "\nEjemplo e8:de:27\e[0m\n"
+              read NUEVAMACAUDITOR
+              clear
+              echo -e "\n\e[93mEsta va a ser su nueva MAC en la tarjeta $MACAUDITOR:\e[0m\n"
+              NUEVAMACRANDOM="$NUEVAMACAUDITOR:a$(($RANDOM%10)):c$(($RANDOM%10)):d$(($RANDOM%10))"
+              echo -e "$NUEVAMACRANDOM\n"
+              echo -e "\e[93mAntes de nada Lanzamos\e[0m sudo ifconfig $MACAUDITOR down \e[93mo no nos dejará cambiarla."
+			  sudo ifconfig $MACAUDITOR down
+              echo -e "\n\e[93mLanzamos \e[0msudo macchanger -m $NUEVAMACRANDOM $MACAUDITOR\n"
+              sudo macchanger -m $NUEVAMACRANDOM $MACAUDITOR
+              echo -e ""
+              echo -e "\n\e[93mAhora la MAC es reconocida como el fabricante escogido.\n\e[0m"
+              macchanger -s $MACAUDITOR 
+              echo -e "\n\e[93mY podemos seguir con la intrusión algo menos rastreables.\n"
+              echo -e "Volvemos a levantar\e[0m sudo ifconfig $MACAUDITOR up\n"
+              sudo ifconfig $MACAUDITOR up
+              read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
+              clear
+             ;;
+        "Opción 3 - Tarjeta en Modo Monitor")
+        	clear
+            echo -e "\nHa elegido la opcion Modo Monitor"
+            sleep 1
+            echo -e "\e[93m\n\n¿Qué es el modo Monitor?\n\n\e[0m"
+            read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
+            clear
+            echo -e "\n\n\e[93mEl modo Monitor es un estado de las tarjetas para redes inalámbricas,"
+            echo -e "\nel cual nos permite capturar todos los tipos de paquetes transmitidos por WiFi.\n\n\e[0m"
+            read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
+            clear
+            echo -e "\n\n\e[93mPara auditar cualquier red WiFi lo primero es poner nuestra tarjeta de redes wireless en modo monitor."
+            echo -e "\nInterceptaremos el tráfico para evaluar la robustez de la red.\e[0m\n\n"
+            read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
+            clear
+            echo -e "\n\n\e[93mCon el comando \e[0miwconfig\e[93m, listamos las tarjetas de red wireless disponibles.\e[0m"
+			echo -e "\niwconfig"
             echo -e "\n\e[32m---------------Lista de sus tarjetas de red disponibles---------------"
             echo -e "\e[0m"
             iwconfig
             echo -e "\n\e[32m-----------------------------------------------------------------------"
-            echo -e "\e[0m"
-            sleep 3
-            echo -e "Es necesario activar el modo monitor de una tarjeta wireless"
-            sleep 3
-            echo -e "y seguidamente eliminaremos los procesos potencialmente conflictivos."
-            sleep 3 
-            echo -e "\nEscoja una de las tarjetas de red disponibles en la lista: "
-            echo -e "\e[91m(NO SELECCIONAR tarjetas no wireless extensions)\e[0m"
+            echo -e "\e[0m\n"
+            read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
+            echo -e "\e[93m\n\nEs necesario activar el modo monitor de una tarjeta wireless."
+            echo -e "\nPara ello utilizaremos la herramienta airmon-ng de la suite Aircrack-ng."
+            echo -e "\nLanzaremos la instrucción \e[0mairmon-ng start <TARJETA DE RED>\n"
+            read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
+            echo -e "\n\n\e[93mEscoja una de las tarjetas de red disponibles en la lista de arriba:"
+            echo -e "\e[91m(NO SELECCIONAR tarjetas no wireless extensions ya que no son tarjetas inalámbricas)\e[0m\n"
             read NIC
             sleep 1
-            echo -e "Para escoger a nuestro target"
-            sleep 3
-            echo -e "el Punto de Acceso (AP) al que deseamos auditar"
-            sleep 3
-            echo -e "necesitamos el nombre que se le ha otorgado (ESSID)"
-            sleep 3
-            echo -e "En este proceso debe escoger un AP por su ESSID"
-            sleep 3
-            echo -e "\n\e[5mATENCION:\e[0m Cuando elija un ESSID..."
-            sleep 4
-            echo -e "...pulse Ctrl c para continuar"
-            sleep 5
-            sudo airmon-ng start $NIC
-            sudo airmon-ng check kill
-            sudo airodump-ng $NIC
-            sleep 1
-            echo -e "\nPor favor, escriba el ESSID del target a auditar: "
-            read WESSID
-            echo -e "También necesitamos el canal en el que opera, por favor:"
-            read WCHANNEL
-            echo -e "Lanzamos una búsqueda más concreta sobre ese AP"
+            echo -e "\n\e[93mLanzamos la instrucción: \e[0msudo airmon-ng start $NIC 2>/dev/null\e[0m"
+            sudo airmon-ng start $NIC 2>/dev/null
+            echo -e "\n"
             sleep 2
-            echo -e "Necesitamos encontrar dispositivos enlazados para lanzar un ataque de deautenticación."
-            sleep 4
-            echo -e "\n\e[5mATENCION:\e[0m Cuando elija la MAC de un dispositivo enlazado(STATION)..."
-            sleep 4
-            echo -e "...pulse Ctrl c para continuar"
-            sleep 4
-            sudo airodump-ng wlan0 -c $WCHANNEL --essid $WESSID 
-            echo -e "\nAhora llega el momento de deautenticar al cliente enlazado."
-            sleep 2
-            echo -e "Una vez que se deutentique, tratará de autenticarse de nuevo."
-            sleep 2
-            echo -e "\nEscriba la MAC del dispositivos escogido(STATION) a deautenticar:"
-            read WSTATION
-            sleep 2
-            echo $WSTATION
+            echo -e "\e[93mLanzamos un script de COMPROBACION de activación:\n"
+            echo -e "\e[0mif command iwconfig wlan0 | grep Monitor >/dev/null\n"
+            if command iwconfig wlan0 | grep Monitor >/dev/null
+ 			 then 
+ 			 echo -e "\e[32mRESULTADO: \e[93mModo Monitor \e[32mCORRECTAMENTE ACTIVADO.\n\e[0m"
+ 			 sleep 1
+ 			 else
+ 			 echo -e "\e[91mALGO HA IDO MAL.\e[93m Modo Monitor \e[91mNO ACTIVADO.\e[0m\n"
+ 			 sleep 1
+ 			 break
+ 			fi
+ 			 read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
+ 			 clear
+ 			echo -e "\n\n\e[93mY seguidamente eliminaremos los procesos potencialmente conflictivos"
+            echo -e "\ncon la instrucción \e[0mairmon-ng check kill\n"
+            read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
+             echo -e "\n\n\e[93mAircrack recomienda eliminar procesos potencialmente conflictivos de este modo:"
+             echo -e "\n\e[0m\nairmon-ng check kill\n"
+             sudo airmon-ng check kill 2>/dev/null
+			 sleep 1 
+			 echo -e "\e[93mProcesos potencialmente conflictivos eliminados.\e[0m\n"
+			 read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
+			 clear
             ;;
-        "Opción Nro. 3")
-            echo "Ha elegido la opción 3"
-            sleep 2
-            clear
-            ./$(basename $0) && exit
-            ;;
+        "Opción 4 - Ataque por deautenticación")
+
+# --------------> I am working here now.
+
+        clear
+        	  echo -e "\e[93m\nEn el proceso de autenticación, cuando un dispositivo y un AP"
+        	  echo -e "\nse ponen de acuerdo, se produce un Handshake que es el que autorizará"
+        	  echo -e "\nal dispositivo para la conexión.\n\e[0m"
+        	  read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
+        	  clear
+              echo -e "\n\e[93mHa escogido Ataque por deautenticación."
+              echo -e "\Los router suelen contar con un sistema de expulsión de usuarios no confiables."
+              echo -e "\nDe este mecanismo se aprovecha la suite Aircrack con su herramienta Aireplay-ng."
+              echo -e "\nEn este modo de ataque, expulsa a los dispositivos enlazados"
+              echo -e "\nbuscando que se reconecten y capturar el handshake."
+        read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
+              echo -e "Para escoger a nuestro target"
+              sleep 3
+              echo -e "el Punto de Acceso (AP) al que deseamos auditar"
+              sleep 3
+              echo -e "necesitamos el nombre que se le ha otorgado (ESSID)"
+              sleep 3
+              echo -e "En este proceso debe escoger un AP por su ESSID"
+              sleep 3
+              echo -e "\n\e[5mATENCION:\e[0m Cuando elija un ESSID..."
+              sleep 4
+              echo -e "...pulse Ctrl c para continuar"
+              sleep 5
+              sudo airodump-ng $NIC 2>/dev/null
+              sleep 1
+              echo -e "\nPor favor, escriba el ESSID del target a auditar: "
+              read WESSID             echo -e "También necesitamos el canal en el que opera, por favor:"
+              read WCHANNEL
+              echo -e "Lanzamos una búsqueda más concreta sobre ese AP"
+              sleep 2
+              echo -e "Necesitamos encontrar dispositivos enlazados para lanzar un ataque de deautenticación."
+              sleep 4
+              echo -e "\n\e[5mATENCION:\e[0m Cuando elija la MAC de un dispositivo enlazado(STATION)..."
+              sleep 4
+              echo -e "...pulse Ctrl c para continuar"
+              sleep 4
+              sudo airodump-ng wlan0 -c $WCHANNEL --essid "$WESSID" 
+              echo -e "\nAhora llega el momento de deautenticar al cliente enlazado."
+              sleep 2
+              echo -e "Una vez que se deutentique, tratará de autenticarse de nuevo."
+              sleep 2
+              echo -e "\nEscriba la MAC del dispositivos escogido(STATION) a deautenticar:"
+              read WSTATION
+			  sleep 2
+              echo $WSTATION
+        ;;
         "Salir")
-        	echo -e "\e[93mBye Bye"
+            clear
+        	echo -e "\n\e[93mBye"
+        	sleep 0.5
+        	clear
+        	echo -e "\n\e[93mBye Bye"
+        	echo -e "\n\n(-_-)\n\n\n\n"
+        	sleep 1.5
+        	clear
+        	echo -e "\n\n©Auditor00 was created in 2021 by Lucas Portolés.\n\n"
             break
             ;;
-        *) echo invalid option;;
+        *) 
+		clear
+        echo -e "\e[93m\n\nOpción Inválida.\n\nEscoja una de las opciones disponibles en el menú.\e[0m"
+        sleep 3
+        clear
+        ;;
     esac
 done
